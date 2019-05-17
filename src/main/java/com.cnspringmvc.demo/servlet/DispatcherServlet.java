@@ -56,7 +56,6 @@ public class DispatcherServlet extends HttpServlet {
             SaveProductController controller = new SaveProductController();
             dispatchUrl = controller.handleRequest(request, response);
         }
-
         // forward to a view
         if (dispatchUrl != null) {
             RequestDispatcher rd = request.getRequestDispatcher(dispatchUrl);
