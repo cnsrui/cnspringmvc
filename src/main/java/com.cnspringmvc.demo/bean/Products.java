@@ -1,16 +1,16 @@
 package com.cnspringmvc.demo.bean;
 import java.io.Serializable;
 
-public class Product implements Serializable {
+public class Products implements Serializable {
     private static final long serialVersionUID = 748392348L;
 	private String name;
     private String description;
     private float price;
 
-    public Product() {
+    public Products() {
     }
 
-    public Product(String name, String description, float price) {
+    public Products(String name, String description, float price) {
         this.name = name;
         this.description = description;
         this.price = price;

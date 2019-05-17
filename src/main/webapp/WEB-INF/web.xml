@@ -6,11 +6,11 @@
   <display-name>Archetype Created Web Application</display-name>
 <!-- 典型的Servlet映射 -->
   <servlet>
-    <servlet-name>ControllerServlet</servlet-name>
-    <servlet-class>com.cnspringmvc.demo.servlet.ControllerServlet</servlet-class>
+    <servlet-name>dispatcherServlet</servlet-name>
+    <servlet-class>com.cnspringmvc.demo.servlet.DispatcherServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>ControllerServlet</servlet-name>
+    <servlet-name>dispatcherServlet</servlet-name>
     <url-pattern>*.action</url-pattern>
   </servlet-mapping>
 

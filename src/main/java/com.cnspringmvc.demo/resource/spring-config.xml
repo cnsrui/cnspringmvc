@@ -4,15 +4,15 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
        
-    <bean name="product" class="com.cnspringmvc.demo.bean.Product"/>
+    <bean name="product" class="com.cnspringmvc.demo.bean.Products"/>
     <!--构造器传递参数-->
-    <bean name="featuredProduct" class="com.cnspringmvc.demo.bean.Product">
+    <bean name="featuredProducts" class="com.cnspringmvc.demo.bean.Products">
 		<constructor-arg name="name" value="Ultimate Olive Oil"/>
         <constructor-arg name="description" value="The purest olive oil on the market"/>
 		<constructor-arg name="price" value="9.95"/>
     </bean>
     <!--指数传递参数-->
-    <bean name="featuredProduct2" class="com.cnspringmvc.demo.bean.Product">
+    <bean name="featuredProducts2" class="com.cnspringmvc.demo.bean.Products">
         <constructor-arg index="0" value="Ultimate Olive Oil"/>
         <constructor-arg index="1" value="The purest olive oil on the market"/>
         <constructor-arg index="2" value="9.95"/>

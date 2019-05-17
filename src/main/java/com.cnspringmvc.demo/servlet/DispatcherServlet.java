@@ -1,7 +1,7 @@
 package com.cnspringmvc.demo.servlet;
 
-import com.cnspringmvc.demo.domain.Product;
-import com.cnspringmvc.demo.form.ProductForm;
+import com.cnspringmvc.demo.controller.InputProductController;
+import com.cnspringmvc.demo.controller.SaveProductController;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,10 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-// 注解形式，而非在 web.xml 中配置
-// @WebServlet(name = "ControllerServlet", urlPatterns = {"/product_input.action", "/product_save.action"})
+// 如果使用注解形式，就不需要在 web.xml 中配置
+// @WebServlet(name = "DispatcherServlet", urlPatterns = {"/product_input.action", "/product_save.action"})
 
-public class ControllerServlet extends HttpServlet {
+public class DispatcherServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1579L;
 
@@ -49,32 +49,12 @@ public class ControllerServlet extends HttpServlet {
         String dispatchUrl = null;
         // execute an action
         if (action.equals("product_input.action")) {
-            // no action class, there is nothing to be done
-            dispatchUrl = "/WEB-INF/jsp/ProductForm.jsp";
+            InputProductController controller = new InputProductController();
+            dispatchUrl = controller.handleRequest(request,response);
         } else if (action.equals("product_save.action")) {
             // create form
-            ProductForm productForm = new ProductForm();
-            // populate action properties
-            productForm.setName(request.getParameter("name"));
-            productForm.setDescription(
-                    request.getParameter("description"));
-            productForm.setPrice(request.getParameter("price"));
-
-            // create model
-            Product product = new Product();
-            product.setName(productForm.getName());
-            product.setDescription(productForm.getDescription());
-            try {
-                product.setPrice(Float.parseFloat(
-                        productForm.getPrice()));
-            } catch (NumberFormatException e) {
-            }
-
-            // code to save product
-
-            // store model in a scope variable for the view
-            request.setAttribute("product", product);
-            dispatchUrl = "/WEB-INF/jsp/ProductDetails.jsp";
+            SaveProductController controller = new SaveProductController();
+            dispatchUrl = controller.handleRequest(request, response);
         }
 
         // forward to a view
