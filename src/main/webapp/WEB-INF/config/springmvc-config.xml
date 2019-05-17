@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+       
+    <bean name="/product_input.action" class="com.cnspringmvc.demo.controller.InputProductController"/>
+    <bean name="/product_save.action" class="com.cnspringmvc.demo.controller.SaveProductController"/>
+
+    <!--视图解析器，负责解析视图-->
+    <!--配置了前缀和后缀，以前访问 /WEB-INF/jsp/myPage.jsp，现在直接访问 myPage 即可。-->
+    <!--需要修改controller中的页面文件的路径-->
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+</beans>
