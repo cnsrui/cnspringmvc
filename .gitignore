@@ -1,3 +1,12 @@
+### Mac ###
+.DS_Store
+### idea ###
+.idea/
+### Java-Web ###
+## ignoring target file
+target/
+
+### Java ###
 # Compiled class file
 *.class
 
