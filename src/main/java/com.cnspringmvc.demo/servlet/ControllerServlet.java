@@ -5,14 +5,14 @@ import com.cnspringmvc.demo.form.ProductForm;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 // 注解形式，而非在 web.xml 中配置
-@WebServlet(name = "ControllerServlet", urlPatterns = {"/product_input.action", "/product_save.action"})
+// @WebServlet(name = "ControllerServlet", urlPatterns = {"/product_input.action", "/product_save.action"})
+
 public class ControllerServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1579L;
@@ -45,9 +45,12 @@ public class ControllerServlet extends HttpServlet {
          */
         int lastIndex = uri.lastIndexOf("/");
         String action = uri.substring(lastIndex + 1);
+
+        String dispatchUrl = null;
         // execute an action
         if (action.equals("product_input.action")) {
             // no action class, there is nothing to be done
+            dispatchUrl = "/WEB-INF/jsp/ProductForm.jsp";
         } else if (action.equals("product_save.action")) {
             // create form
             ProductForm productForm = new ProductForm();
@@ -71,15 +74,10 @@ public class ControllerServlet extends HttpServlet {
 
             // store model in a scope variable for the view
             request.setAttribute("product", product);
+            dispatchUrl = "/WEB-INF/jsp/ProductDetails.jsp";
         }
 
         // forward to a view
-        String dispatchUrl = null;
-        if (action.equals("product_input.action")) {
-            dispatchUrl = "/WEB-INF/jsp/ProductForm.jsp";
-        } else if (action.equals("product_save.action")) {
-            dispatchUrl = "/WEB-INF/jsp/ProductDetails.jsp";
-        }
         if (dispatchUrl != null) {
             RequestDispatcher rd = request.getRequestDispatcher(dispatchUrl);
             rd.forward(request, response);
