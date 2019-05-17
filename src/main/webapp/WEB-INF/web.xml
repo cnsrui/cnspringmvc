@@ -26,8 +26,8 @@
 
     <servlet-mapping>
         <servlet-name>springmvc</servlet-name>
-        <!-- 将所有的URl映射到该servlet -->
-        <!-- <url-pattern>/</url-pattern> -->
-        <url-pattern>*.action</url-pattern>
+        <!-- 将所有的URl映射到该servlet，包括静态资源 -->
+         <url-pattern>/</url-pattern>
+        <!--<url-pattern>*.action</url-pattern>-->
     </servlet-mapping>
 </web-app>
