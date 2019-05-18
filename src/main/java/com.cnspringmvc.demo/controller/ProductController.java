@@ -18,7 +18,7 @@ public class ProductController {
 
     private static final Log logger = LogFactory.getLog(ProductController.class);
 
-    // @Autowired注解会将 ProducService接口的一个实例注入到这个类中
+    // @Autowired注解会将 ProducService 接口的一个实例注入到这个类中
     @Autowired
     private ProductService productService;
 
