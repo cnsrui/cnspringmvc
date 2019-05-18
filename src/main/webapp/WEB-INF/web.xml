@@ -19,8 +19,8 @@
             <param-name>contextConfigLocation</param-name>
             <param-value>/WEB-INF/config/springmvc-config.xml</param-value>
         </init-param>
-        <!-- 若有这句，则在应用程序启动时装载servlet并调用它的init方法 -->
-        <!-- 若没有这句，则该servlet在第一个请求时加载 -->
+        <!-- 若有on-startup，则在应用程序启动时装载servlet并调用它的init方法 -->
+        <!-- 若没有on-startup，则该servlet在第一个请求时加载 -->
         <load-on-startup>1</load-on-startup>
     </servlet>
 

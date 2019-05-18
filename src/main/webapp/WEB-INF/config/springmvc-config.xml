@@ -13,7 +13,11 @@
         http://www.springframework.org/schema/context/spring-context.xsd">
     <!--扫描含有controller的包-->
     <context:component-scan base-package="com.cnspringmvc.demo.controller"/>
+    <context:component-scan base-package="com.cnspringmvc.demo.service"/>
+
     <!--mvc:annotation-driven标签表示注册用于注解控制器的请求处理方法的bean对象-->
+    <!--如果没有mvc:annotation-driven，resource元素会阻止任意控制器的访问。-->
+    <!--如果不需要使用resource元素，则不需要使用annotation-driven-->
     <mvc:annotation-driven/>
     <!--mvc:resource标签表示单独处理静态资源，而不通过 Dispatcher Servlet-->
     <!--使得 /css 目录下的所有文件可见，以及允许显示所有的 html 文件-->
