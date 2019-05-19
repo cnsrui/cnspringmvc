@@ -42,7 +42,8 @@ public class BookController {
         return "BookEditForm";
     }
 
-    // @ModelAttribute使得在每次调用saveBook()方法时创建book实例
+    // @ModelAttribute使得在每次调用saveBook()方法时创建book实例。
+    // 该book实例拥有表单中的数据，可直接进行处理。
     @RequestMapping(value = "/book_save")
     public String saveBook(@ModelAttribute Book book) {
         Category category = bookService.getCategory(book.getCategory().getId());

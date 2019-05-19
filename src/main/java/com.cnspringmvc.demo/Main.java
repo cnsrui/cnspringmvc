@@ -1,6 +1,6 @@
 package com.cnspringmvc.demo;
 
-import com.cnspringmvc.demo.bean.Employee;
+import com.cnspringmvc.demo.bean.EmployeeOld;
 import com.cnspringmvc.demo.bean.Products;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -34,14 +34,14 @@ public class Main {
         System.out.println("------------");
 
 
-        Employee employee1 = context.getBean("employee1", Employee.class);
-        System.out.println(employee1.getFirstName() + " " + employee1.getLastName());
-        System.out.println(employee1.getHomeAddress());
+        EmployeeOld employeeOld1 = context.getBean("employee1", EmployeeOld.class);
+        System.out.println(employeeOld1.getFirstName() + " " + employeeOld1.getLastName());
+        System.out.println(employeeOld1.getHomeAddress());
         System.out.println("------------");
 
-        Employee employee2 = context.getBean("employee2", Employee.class);
-        System.out.println(employee2.getFirstName() + " " + employee2.getLastName());
-        System.out.println(employee2.getHomeAddress());
+        EmployeeOld employeeOld2 = context.getBean("employee2", EmployeeOld.class);
+        System.out.println(employeeOld2.getFirstName() + " " + employeeOld2.getLastName());
+        System.out.println(employeeOld2.getHomeAddress());
 
     }
 

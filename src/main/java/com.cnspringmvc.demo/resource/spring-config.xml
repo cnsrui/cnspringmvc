@@ -22,13 +22,13 @@
     <bean id="calendar" class="java.util.Calendar" factory-method="getInstance"/>
 
       <!--setter方式依赖注入-->
-    <bean name="employee1" class="com.cnspringmvc.demo.bean.Employee">
+    <bean name="employeeOld1" class="com.cnspringmvc.demo.bean.EmployeeOld">
         <property name="homeAddress" ref="simpleAddress"/>
         <property name="firstName" value="Junior"/>
         <property name="lastName" value="Moore"/>
     </bean>
     <!--构造器方式依赖注入-->
-    <bean name="employee2" class="com.cnspringmvc.demo.bean.Employee">
+    <bean name="employeeOld2" class="com.cnspringmvc.demo.bean.EmployeeOld">
         <constructor-arg name="homeAddress" ref="simpleAddress"/>
         <constructor-arg name="firstName" value="Senior"/>
         <constructor-arg name="lastName" value="Moore"/>

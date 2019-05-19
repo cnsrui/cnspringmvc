@@ -1,14 +1,14 @@
 package com.cnspringmvc.demo.bean;
 
-public class Employee {
+public class EmployeeOld {
     private String firstName;
     private String lastName;
     private Address homeAddress;
     
-    public Employee() {
+    public EmployeeOld() {
     }
     
-    public Employee(String firstName, String lastName, Address homeAddress) {
+    public EmployeeOld(String firstName, String lastName, Address homeAddress) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.homeAddress = homeAddress;

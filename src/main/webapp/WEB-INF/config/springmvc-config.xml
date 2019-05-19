@@ -15,15 +15,20 @@
     <context:component-scan base-package="com.cnspringmvc.demo.controller"/>
     <context:component-scan base-package="com.cnspringmvc.demo.service"/>
 
-    <!--mvc:annotation-driven标签表示注册用于注解控制器的请求处理方法的bean对象-->
+    <!--mvc:annotation-driven 标签表示注册用于注解控制器的请求处理方法的bean对象，简单解释就时注解的开关。-->
     <!--如果没有mvc:annotation-driven，resource元素会阻止任意控制器的访问。-->
     <!--如果不需要使用resource元素，则不需要使用annotation-driven-->
-    <mvc:annotation-driven/>
+    <!--<mvc:annotation-driven/>-->
+
+    <!--使用 Converter，需要在 annotation-driven 添加 conversion-service，-->
+    <mvc:annotation-driven conversion-service="conversionService"/>
     <!--mvc:resource标签表示单独处理静态资源，而不通过 Dispatcher Servlet-->
     <!--使得 /css 目录下的所有文件可见，以及允许显示所有的 html 文件-->
     <mvc:resources mapping="/css/**" location="/css/"/>
     <mvc:resources mapping="/*.html" location="/"/>
 
+
+<!--原始的映射关系-->
 <!--    <bean name="/product_input.action" class="com.cnspringmvc.demo.controller.InputProductController"/>
     <bean name="/product_save.action" class="com.cnspringmvc.demo.controller.SaveProductController"/>
 -->
@@ -35,4 +40,17 @@
         <property name="prefix" value="/WEB-INF/jsp/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
+
+    <!--注册StringToDateConverter-->
+    <bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
+        <property name="converters">
+            <list>
+                <bean class="com.cnspringmvc.demo.converter.StringToDateConverter">
+                    <!--构造函数的参数，用于SimpleDateFormat的格式模式-->
+                    <constructor-arg type="java.lang.String" value="MM-dd-yyyy"/>
+                </bean>
+            </list>
+        </property>
+    </bean>
+
 </beans>
