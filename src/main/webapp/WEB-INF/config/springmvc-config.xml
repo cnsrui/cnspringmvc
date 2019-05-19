@@ -56,10 +56,21 @@
     </bean>-->
 
     <!--注册 DateFormatter Formatter-->
-    <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+<!--    <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
         <property name="formatters">
             <set>
                 <bean class="com.cnspringmvc.demo.formatter.DateFormatter">
+                    <constructor-arg type="java.lang.String" value="MM-dd-yyyy" />
+                </bean>
+            </set>
+        </property>
+    </bean>-->
+
+    <!--注册 DateFormatter Formatter with Registrar-->
+    <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+        <property name="formatterRegistrars">
+            <set>
+                <bean class="com.cnspringmvc.demo.formatter.MyformatterRegistrar">
                     <constructor-arg type="java.lang.String" value="MM-dd-yyyy" />
                 </bean>
             </set>
