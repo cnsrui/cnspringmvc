@@ -14,7 +14,8 @@
         <h5>Details:</h5>
         Product Name: ${product.name}<br/>
         Description: ${product.description}<br/>
-        Price: $${product.price}
+        Price: $${product.price}<br/>
+        Product Date : ${product.productionDate}
     </p>
 </div>
 </body>
