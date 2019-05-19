@@ -76,6 +76,12 @@
             </set>
         </property>
     </bean>
+    <!--用于验证器查找某个属性的错误信息-->
+    <bean id="messageSource"
+          class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <property name="basename" value="/WEB-INF/resource/messages" />
+    </bean>
+
 
 
 </beans>

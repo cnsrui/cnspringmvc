@@ -1,17 +1,57 @@
 package com.cnspringmvc.demo.controller;
 
 import com.cnspringmvc.demo.domain.Product;
-import com.cnspringmvc.demo.form.ProductForm;
-import com.cnspringmvc.demo.service.ProductService;
+import com.cnspringmvc.demo.validator.ProductValidator;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+@Controller
+public class ProductController {
+
+    private static final Log logger = LogFactory
+            .getLog(ProductController.class);
+
+    @RequestMapping(value = "/product_input")
+    public String inputProduct(Model model) {
+        model.addAttribute("product", new Product());
+        return "ProductForm";
+    }
+
+    @RequestMapping(value = "/product_save")
+    public String saveProduct(@ModelAttribute Product product,
+                              BindingResult bindingResult, Model model) {
+        logger.info("product_save");
+
+        // 使用验证器
+        ProductValidator productValidator = new ProductValidator();
+        productValidator.validate(product, bindingResult);
+        // 保存错误信息
+        if (bindingResult.hasErrors()) {
+            FieldError fieldError = bindingResult.getFieldError();
+            logger.info("Code:" + fieldError.getCode() + ", field:"
+                    + fieldError.getField());
+
+            return "ProductForm";
+        }
+
+        // save product here
+
+        model.addAttribute("product", product);
+        return "ProductDetails";
+    }
+}
+
+
+
+
+
+/*
 
 @Controller
 public class ProductController {
@@ -28,13 +68,15 @@ public class ProductController {
         return "ProductForm";
     }
 
-    /**
+    */
+/**
      * 重定向无法传值。由于需要经过客户端，Model中的所以值都会在重定向时丢失。
      * 可通过flash属性，使得重定向具有传值功能。
      * 使用flash属性传值的前提条件为
      * 1. springmvc-config配置文件中添加 <annotation-driven>
      * 2. 在方法的参数列表中添加 RedirectAttributes redirectAttributes
-     */
+     *//*
+
     @RequestMapping(value="/product_save", method = RequestMethod.POST)
     public String saveProduct(ProductForm productForm, RedirectAttributes redirectAttributes) {
         logger.info("saveProduct called");
@@ -62,13 +104,15 @@ public class ProductController {
 
     }
 
-    /**
+    */
+/**
      * 使用可变路径
      * 1. 在 @RequestMapping 中添加变量，且放在{}中。
      * 2. 在方法签名中添加同名变量，且加上 @PahtVariable 注解。
-     * 当方法被调用时，URL中的id值将被复制到路径变量中，可被直接使用。
+     * 当方法被调用时，URL中的id值将被复制到路径变量id中，可被直接使用。
      * 路径变量的类型可以不为字符串。
-     */
+     *//*
+
     @RequestMapping(value = "/product_view/{id}")
     public String viewProduct(@PathVariable Long id, Model model) {
         // 此处的 productService.get(id) 将返回在Map中最新添加的值
@@ -77,3 +121,4 @@ public class ProductController {
         return "ProductView";
     }
 }
+*/
