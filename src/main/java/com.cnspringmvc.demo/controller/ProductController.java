@@ -1,7 +1,6 @@
 package com.cnspringmvc.demo.controller;
 
 import com.cnspringmvc.demo.domain.Product;
-import com.cnspringmvc.demo.validator.ProductValidator;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
@@ -10,6 +9,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.validation.Valid;
 
 @Controller
 public class ProductController {
@@ -23,14 +24,18 @@ public class ProductController {
         return "ProductForm";
     }
 
+
+    // 添加 @Valid 启用JSR308验证器
     @RequestMapping(value = "/product_save")
-    public String saveProduct(@ModelAttribute Product product,
-                              BindingResult bindingResult, Model model) {
+    //public String saveProduct( @ModelAttribute Product product, BindingResult bindingResult, Model model) {
+    public String saveProduct( @Valid @ModelAttribute Product product, BindingResult bindingResult, Model model) {
         logger.info("product_save");
 
         // 使用验证器
-        ProductValidator productValidator = new ProductValidator();
-        productValidator.validate(product, bindingResult);
+        // 如果使用 JSR308，就不需要使用Validator验证器了
+        //ProductValidator productValidator = new ProductValidator();
+        //productValidator.validate(product, bindingResult);
+
         // 保存错误信息
         if (bindingResult.hasErrors()) {
             FieldError fieldError = bindingResult.getFieldError();
