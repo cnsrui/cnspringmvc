@@ -53,7 +53,8 @@ header accetp-language : ${header["accept-language"]}
             <p>
                 <label for="images"><spring:message code="label.images"/> : </label>
                 <%--没有使用<form:input path></form:input>，不知道上传的标签是什么--%>
-                <input id="images" type="file" name="images[0]"/>
+                <%-- multiple="multiple" 表示多选，但目前上传时还是只能上传第一个选中的文件 --%>
+                <input id="images" type="file" name="images[0]" multiple="multiple"/>
             </p>
 
             <p id="buttons">

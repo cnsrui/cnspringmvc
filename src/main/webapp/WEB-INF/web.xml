@@ -22,6 +22,16 @@
         <!-- 若有on-startup，则在应用程序启动时装载servlet并调用它的init方法 -->
         <!-- 若没有on-startup，则该servlet在第一个请求时加载 -->
         <load-on-startup>1</load-on-startup>
+
+        <!--Servlet3.0版本或更高提供的上传功能-->
+        <multipart-config>
+            <!--上传文件的最大容量，超过最大容量会拒绝。默认 -1 表示没有限制。-->
+            <max-file-size>20848820</max-file-size>
+            <!--多部分HTTP请求允许的最大容量。默认 -1 表示没有限制。-->
+            <max-request-size>418018841</max-request-size>
+            <!--上传文件超过这个容量界限时，会被写入磁盘-->
+            <file-size-threshold>1048576</file-size-threshold>
+        </multipart-config>
     </servlet>
 
     <servlet-mapping>

@@ -29,6 +29,7 @@
     <mvc:resources mapping="/css/**" location="/css/"/>
     <mvc:resources mapping="/*.html" location="/"/>
     <mvc:resources mapping="/images/**" location="/images/"/>
+    <mvc:resources mapping="/files/**" location="/files/"/>
 
 
     <!--原始的映射关系-->
@@ -118,10 +119,16 @@
     </bean>
     -->
 
+
     <!--用于上传文件，使用 Apache Commons UploadFile 组件-->
-    <bean id="multipartResolver"
+<!--    <bean id="multipartResolver"
           class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
         <property name="maxUploadSize" value="2000000"/>
+    </bean>   -->
+
+    <!--用于上传文件，使用 Servlet3.0或更高版本提供的功能-->
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.support.StandardServletMultipartResolver">
     </bean>
 
 </beans>

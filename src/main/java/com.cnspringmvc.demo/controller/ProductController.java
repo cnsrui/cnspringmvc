@@ -59,9 +59,6 @@ public class ProductController {
             return "ProductForm";
         }
 
-        List<MultipartFile> files = product.getImages();
-        List<String> fileNames = new ArrayList<>();
-
         // 创建保存上传文件的目录的路径来存储上传的文件，这个路径相对当前应用的目录，比如 myweb/
         String uploadPath = servletRequest.getServletContext().getRealPath("/") + UPLOAD_DIRECTORY;
 
@@ -75,7 +72,8 @@ public class ProductController {
             System.out.println("Upload Directory : "+ uploadDir + " had bean existed.");
         }
 
-
+        List<MultipartFile> files = product.getImages();
+        List<String> fileNames = new ArrayList<>();
         if (files != null && files.size() > 0) {
             for (MultipartFile multipartFile : files) {
                 // 获取原始文件名称
