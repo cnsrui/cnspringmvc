@@ -1,6 +1,8 @@
 package com.cnspringmvc.demo.controller;
 
 import com.cnspringmvc.demo.domain.Product;
+import com.cnspringmvc.demo.service.UploadService;
+import com.cnspringmvc.demo.service.UploadServiceImpl;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
@@ -9,14 +11,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 public class ProductController {
@@ -61,8 +58,10 @@ public class ProductController {
 
         // 创建保存上传文件的目录的路径来存储上传的文件，这个路径相对当前应用的目录，比如 myweb/
         String uploadPath = servletRequest.getServletContext().getRealPath("/") + UPLOAD_DIRECTORY;
+        UploadService uploadService = new UploadServiceImpl();
+        uploadService.uploadFiles(uploadPath,product);
 
-        // 如果保存上传文件的目录不存在，就创建
+        /*// 如果保存上传文件的目录不存在，就创建
         File uploadDir = new File(uploadPath);
         if (!uploadDir.exists()) {
             uploadDir.mkdir();
@@ -94,7 +93,7 @@ public class ProductController {
                 System.out.println("文件 " + fileName + " 上传成功。");
                 System.out.println("保存路径为： " + storeFile);
             }
-        }
+        }*/
         // save product here
 
         model.addAttribute("product", product);

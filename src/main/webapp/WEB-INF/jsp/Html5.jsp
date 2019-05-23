@@ -93,17 +93,21 @@
 </head>
 <body>
 <h1>Multiple file uploads with progress bar</h1>
+<%--进度条--%>
 <div id='progressBar' style='height:20px;border:2px solid green'>
-    <div id='bar' 
-            style='height:100%;background:#33dd33;width:0%'>
+    <div id='bar' style='height:100%;background:#33dd33;width:0%'>
     </div>
 </div>
 <form>
+
     <input type="file" id="files" multiple/>
     <br/>
+    <%--显示已选择文件信息--%>
     <output id="selectedFiles"></output>
+    <%--提交按钮，但实际执行XMLHttpRequest对象--%>
     <input id="uploadButton" type="button" value="Upload"/>
 </form>
+<%--显示上传信息--%>
 <div id='debug' 
     style='height:100px;border:2px solid green;overflow:auto'>
 </div>

@@ -1,5 +1,6 @@
 package com.cnspringmvc.demo.service;
 
+import com.cnspringmvc.demo.domain.Product;
 import com.cnspringmvc.demo.domain.UploadedFile;
 
 /**
@@ -9,4 +10,5 @@ import com.cnspringmvc.demo.domain.UploadedFile;
  */
 public interface UploadService {
     void uploadFile(String uploadPath, UploadedFile uploadedFile);
+    void uploadFiles(String uploadPath, Product product);
 }
