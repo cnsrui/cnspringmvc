@@ -16,6 +16,14 @@
         Description: ${product.description}<br/>
         Price: $${product.price}<br/>
         Product Date : ${product.productionDate}
+    <ol>
+        <c:forEach items="${product.images}" var="image">
+            <li>${image.originalFilename}
+                <img width="100" src="<c:url value="/images/"/>
+            ${image.originalFilename}"/>
+            </li>
+        </c:forEach>
+    </ol>
     </p>
 </div>
 </body>

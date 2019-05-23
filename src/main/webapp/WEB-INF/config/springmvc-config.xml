@@ -28,6 +28,7 @@
     <!--使得 /css 目录下的所有文件可见，以及允许显示所有的 html 文件-->
     <mvc:resources mapping="/css/**" location="/css/"/>
     <mvc:resources mapping="/*.html" location="/"/>
+    <mvc:resources mapping="/images/**" location="/images/"/>
 
 
     <!--原始的映射关系-->
@@ -78,6 +79,7 @@
     </bean>
 
     <!--用于验证器查找某个属性的错误信息-->
+    <!--也用于国际化的信息-->
     <!--ReloadableResourceBundleMessageSource表示可以程序在运行过程中实施加载message内容，而不用重启JVM-->
     <bean id="messageSource"
           class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
@@ -97,6 +99,29 @@
     <!--如果浏览器的语言区域与SpringMVC支持的相匹配，则设置能该区域。否则使用默认语言区域-->
     <bean id="localeResolver"
           class="org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver">
+    </bean>
+
+    <!--采用 LocaleChangeInterceptor 方式，实现信息本地化-->
+    <!--
+    <bean id="localeChangeInterceptor"
+          class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+        <property name="paramName" value="lang" />
+    </bean>
+
+    <bean id="handlerMapping"
+          class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">
+        <property name="interceptors">
+            <list>
+                <ref bean="localeChangeInterceptor" />
+            </list>
+        </property>
+    </bean>
+    -->
+
+    <!--用于上传文件，使用 Apache Commons UploadFile 组件-->
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="2000000"/>
     </bean>
 
 </beans>

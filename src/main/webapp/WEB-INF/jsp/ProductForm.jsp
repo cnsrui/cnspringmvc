@@ -19,7 +19,7 @@ header accetp-language : ${header["accept-language"]}
 
 <h5><spring:message code="page.h5.title"/></h5>
     <div id="global">
-    <form:form commandName="product" action="product_save" method="post">
+    <form:form commandName="product" action="product_save" method="post" enctype="multipart/form-data">
         <fieldset>
             <legend><spring:message code="form.name"/></legend>
             <p class="errorLine">
@@ -47,6 +47,15 @@ header accetp-language : ${header["accept-language"]}
                 <label for="productionDate">* <spring:message code="label.productDate"/> : </label>
                 <form:input id="productionDate" path="productionDate" tabindex="4"/>
             </p>
+            <p class="errorLine">
+                <form:errors path="images" cssClass="error"/>
+            </p>
+            <p>
+                <label for="images"><spring:message code="label.images"/> : </label>
+                <%--没有使用<form:input path></form:input>，不知道上传的标签是什么--%>
+                <input id="images" type="file" name="images[0]"/>
+            </p>
+
             <p id="buttons">
                 <input id="reset" type="reset" tabindex="5" value="<spring:message code="button.reset"/>">
                 <input id="submit" type="submit" tabindex="6" value="<spring:message code="button.submit"/>">
