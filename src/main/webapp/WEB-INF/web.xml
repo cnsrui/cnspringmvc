@@ -21,6 +21,7 @@
         </init-param>
         <!-- 若有on-startup，则在应用程序启动时装载servlet并调用它的init方法 -->
         <!-- 若没有on-startup，则该servlet在第一个请求时加载 -->
+        <!--值 1 表示第一个被加载。如果有2，3...，会依次按顺序加载-->
         <load-on-startup>1</load-on-startup>
 
         <!--Servlet3.0版本或更高提供的上传功能-->

@@ -36,7 +36,9 @@ public class BookController {
     public String editBook(Model model, @PathVariable long id) {
         List<Category> categories = bookService.getAllCategories();
         model.addAttribute("categories", categories);
+        //根据传来的路径变量id值，确定要编辑的是哪个条目
         Book book = bookService.get(id);
+        //重新返回给视图
         model.addAttribute("book", book);
         System.out.println("book_edit");
         return "BookEditForm";
@@ -49,6 +51,7 @@ public class BookController {
         Category category = bookService.getCategory(book.getCategory().getId());
         book.setCategory(category);
         bookService.save(book);
+        //重定向，避免将数据重复保存
         return "redirect:/book_list";
     }
 

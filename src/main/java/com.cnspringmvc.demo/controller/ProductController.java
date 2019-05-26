@@ -11,19 +11,25 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 @Controller
+/**
+ * 将 @RequestMapping 写在类前面，表示类级别请求。
+ * 如果在请求类中的映射，则访问路径更改为类路径加方法路径，例如 /customer/product_input
+ */
+//@RequestMapping("/customer")
 public class ProductController {
 
-    private static final String UPLOAD_DIRECTORY = "images";
+    private static final String UPLOAD_DIRECTORY = "files";
 
     private static final Log logger = LogFactory
             .getLog(ProductController.class);
 
-    @RequestMapping(value = "/product_input")
+    @RequestMapping(value = "/product_input", method ={RequestMethod.GET,RequestMethod.POST})
     public String inputProduct(Model model) {
         model.addAttribute("product", new Product());
         return "ProductForm";

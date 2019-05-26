@@ -2,6 +2,7 @@ package com.cnspringmvc.demo.service;
 
 import com.cnspringmvc.demo.domain.Product;
 import com.cnspringmvc.demo.domain.UploadedFile;
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -10,10 +11,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * @param uploadPath : String 文件上传路径
+ * @param uploadedFile : MultipartFile UploadedFile 用户上传的文件
  * @Description
  * @auther cnsrui
  * @create 2019-05-23 11:46
  */
+@Service
 public class UploadServiceImpl implements UploadService {
 
     @Override

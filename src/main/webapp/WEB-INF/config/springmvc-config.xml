@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+        <!--Spring使用扫描机制来找到应用程序中所有基于注解的控制器。需添加下面这句-->
+        <!--xmlns:context="http://www.springframework.org/schema/context"-->
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:p="http://www.springframework.org/schema/p"
@@ -24,16 +27,18 @@
 
     <!--使用 Converter 或 Formatter，都需要在 annotation-driven 添加 conversion-service -->
     <mvc:annotation-driven conversion-service="conversionService"/>
+
     <!--mvc:resource标签表示单独处理静态资源，而不通过 Dispatcher Servlet-->
     <!--使得 /css 目录下的所有文件可见，以及允许显示所有的 html 文件-->
     <mvc:resources mapping="/css/**" location="/css/"/>
     <mvc:resources mapping="/*.html" location="/"/>
-    <mvc:resources mapping="/images/**" location="/images/"/>
-    <mvc:resources mapping="/files/**" location="/files/"/>
+    <mvc:resources mapping="/images/**" location="WEB-INF/images/"/>
+    <mvc:resources mapping="/files/**" location="files/"/>
 
 
-    <!--原始的映射关系-->
-    <!--    <bean name="/product_input.action" class="com.cnspringmvc.demo.controller.InputProductController"/>
+    <!--非注解，原始的映射关系，name 就是路径-->
+    <!--
+    <bean name="/product_input.action" class="com.cnspringmvc.demo.controller.InputProductController"/>
         <bean name="/product_save.action" class="com.cnspringmvc.demo.controller.SaveProductController"/>
     -->
 
@@ -46,11 +51,11 @@
     </bean>
 
     <!--注册StringToDateConverter-->
+    <!--构造函数的参数，用于SimpleDateFormat的格式模式-->
     <!--    <bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
             <property name="converters">
                 <list>
                     <bean class="com.cnspringmvc.demo.converter.StringToDateConverter">
-                        &lt;!&ndash;构造函数的参数，用于SimpleDateFormat的格式模式&ndash;&gt;
                         <constructor-arg type="java.lang.String" value="MM-dd-yyyy"/>
                     </bean>
                 </list>
@@ -69,6 +74,7 @@
         </bean>-->
 
     <!--注册 DateFormatter Formatter with Registrar-->
+    <!--使用 Registrar 的好处是，可以添加其他的格式化工具-->
     <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
         <property name="formatterRegistrars">
             <set>

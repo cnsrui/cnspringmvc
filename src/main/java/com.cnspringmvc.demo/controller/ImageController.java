@@ -31,6 +31,7 @@ public class ImageController {
         if (referer != null) {
             String imageDirectory = request.getServletContext().
                     getRealPath("/WEB-INF/images");
+            // 利用路径变量中的 id 值，设置读取的文件名称
             File file = new File(imageDirectory,id + ".jpg");
             if (file.exists()) {
                 response.setContentType("image/jpg");

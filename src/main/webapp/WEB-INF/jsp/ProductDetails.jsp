@@ -19,7 +19,7 @@
     <ol>
         <c:forEach items="${product.images}" var="image">
             <li>${image.originalFilename}
-                <img width="100" src="<c:url value="/images/"/>
+                <img width="100" src="<c:url value="/files/"/>
             ${image.originalFilename}"/>
             </li>
         </c:forEach>

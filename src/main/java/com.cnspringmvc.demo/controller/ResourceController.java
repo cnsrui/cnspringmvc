@@ -13,9 +13,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.*;
 
-
+/**
+ * 用户无法直接读取在WEB-INF目录中的文件
+ * 若要展示给用户，需要用流处理
+ */
 @Controller
-
 public class ResourceController {
 
     private static final Log logger = LogFactory.getLog(ResourceController.class);
@@ -45,8 +47,7 @@ public class ResourceController {
         File file = new File(dataDirectory, "secret.pdf");
         if (file.exists()) {
             response.setContentType("application/pdf");
-            response.addHeader("Content-Disposition",
-                    "attachment; filename=secret.pdf");
+            response.addHeader("Content-Disposition","attachment; filename=secret.pdf");
 
             byte[] buffer = new byte[1024];
             try (FileInputStream fis = new FileInputStream(file);
